@@ -20,17 +20,25 @@
     },
     "button": {
         "border": {
-            "radius": "4px"
+            "radius": "24px"
         }
     },
     "checkBox": {
         "border": {
-            "radius": "4px"
+            "radius": "24px"
         }
     },
     "layer": {
         "border": {
-            "radius": "4px"
+            "radius": "24px"
+        }
+    },
+    "icon": {
+        "size": {
+          "small": "12px",
+          "medium": "24px",
+          "large": "148px",
+          "xlarge": "296px"
         }
     }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Grommet, Box } from 'grommet';
+import { Heading, Box, Button } from 'grommet';
+import { Sign } from 'grommet-icons';
 
 class NavbarComponent extends Component {
   render() {
@@ -10,7 +11,11 @@ class NavbarComponent extends Component {
         align='center'
         justify='between'
         pad={{ left: 'medium', right: 'small', vertical: 'small' }}
+        background='black'
       >
+
+        <Heading level='3' margin='none'>THQ</Heading>
+        <Button color='brand' icon={ <Sign/> } label='Sign In' onClick={() => { }}/>
       </Box>
     );
   }
