@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Heading, Box, Button } from 'grommet';
-import { Sign } from 'grommet-icons';
+import { Sign, FormEdit } from 'grommet-icons';
+import { Link } from 'react-router-dom';
 
 class NavbarComponent extends Component {
   render() {
@@ -14,8 +15,19 @@ class NavbarComponent extends Component {
         background='black'
       >
 
-        <Heading level='3' margin='none'>THQ</Heading>
-        <Button color='brand' icon={ <Sign/> } label='Sign In' onClick={() => { }}/>
+        <Link to='/' style={{ textDecoration: 'none', color: 'white' }}>
+          <Heading level='3' margin='none'>THQ</Heading>
+        </Link>
+        <Box
+          direction='row'
+        >
+          <Link to='/signin'>
+            <Button margin={{ right: '0.5rem' }} color='brand' icon={<Sign />} label='Sign In' onClick={() => { }} />
+          </Link>
+          <Link to='/register'>
+            <Button color='brand' icon={<FormEdit />} label='Register' onClick={() => { }} />
+          </Link>
+        </Box>
       </Box>
     );
   }
