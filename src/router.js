@@ -12,6 +12,7 @@ class ThetaRouter extends Component {
       <Router>
         <NavbarComponent/>
         <div>
+          {/* @todo change title */}
           <Route exact path='/' component={HomeComponent} />
           <Route path='/tryit' component={TryItComponent} />
           <Route path='/signin' component={SignInComponent} />

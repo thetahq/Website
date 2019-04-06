@@ -16,7 +16,7 @@ class NavbarComponent extends Component {
       >
 
         <Link to='/' style={{ textDecoration: 'none', color: 'white' }}>
-          <Heading level='3' margin='none'>THQ</Heading>
+          <Heading level='3' margin='none'>THR</Heading>
         </Link>
         <Box
           direction='row'
