@@ -8,11 +8,11 @@ import NavbarComponent from './components/NavbarComponent';
 
 class ThetaRouter extends Component {
   render() {
+    // @todo change title depending on current page
     return (
       <Router>
         <NavbarComponent/>
         <div>
-          {/* @todo change title */}
           <Route exact path='/' component={HomeComponent} />
           <Route path='/tryit' component={TryItComponent} />
           <Route path='/signin' component={SignInComponent} />
