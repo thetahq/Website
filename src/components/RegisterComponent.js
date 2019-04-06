@@ -35,6 +35,8 @@ class RegisterComponent extends Component {
     }).catch((err) => {
       console.error(err);
     });
+
+    // @todo handle all errors and redirect to dashboard if everything is ok
   }
 
   render() {
