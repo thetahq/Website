@@ -5,6 +5,7 @@ import TryItComponent from './components/TryItComponent';
 import SignInComponent from './components/SignInComponent';
 import RegisterComponent from './components/RegisterComponent';
 import NavbarComponent from './components/NavbarComponent';
+import EmailActivationComponent from './component/EmailActivationComponent';
 
 class ThetaRouter extends Component {
   render() {
@@ -17,6 +18,7 @@ class ThetaRouter extends Component {
           <Route path='/tryit' component={TryItComponent} />
           <Route path='/signin' component={SignInComponent} />
           <Route path='/register' component={RegisterComponent} />
+          <Route path='/activate/:email/:id' component={EmailActivationComponent}/>
         </div>
       </Router>
     );
