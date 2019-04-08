@@ -26,28 +26,28 @@ class EmailActivationComponent extends Component {
     fetch('http://localhost:8000/verifyemail', init).then((resp) => {
       if (!resp.ok) {
         this.setState({
-          message: 'Error. Could not verify email.'
+          message: 'Error. Could not verify e-mail.'
         });
       } else {
         resp.json().then((data) => {
           if (data.status === "error") {
             this.setState({
-              message: 'Email not verified. Try again.'
+              message: 'E-Mail not verified. Try again.'
             })
           } else if (data.status === "ok") {
             this.setState({
-              message: 'Email verified. Now you can Sign in.'
+              message: 'E-Mail verified. Now you can Sign in.'
             })
           } else {
             this.setState({
-              message: 'Error. Could not verify email.'
+              message: 'Error. Could not verify e-mail.'
             });
           }
         });
       }
     }).catch((err) => {
       this.setState({
-        message: 'Error. Could not verify email.'
+        message: 'Error. Could not verify e-mail.'
       });
       console.error(err);
     });
@@ -67,7 +67,7 @@ class EmailActivationComponent extends Component {
             }}
             background='black'
           >
-            <Heading level='1' size='medium'>Email Verification</Heading>
+            <Heading level='1' size='medium'>E-Mail Verification</Heading>
             <Box
               align='center'
               justify='center'
