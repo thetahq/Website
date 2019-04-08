@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box, Heading, ResponsiveContext, Form, FormField, Button } from 'grommet';
+import { Box, Heading, ResponsiveContext } from 'grommet';
 
 class EmailActivationComponent extends Component {
   constructor(props) {
@@ -18,8 +18,8 @@ class EmailActivationComponent extends Component {
       method: 'POST',
       headers: headers,
       body: JSON.stringify({
-        email: this.props.email,
-        id: this.props.id
+        email: this.props.match.params.email,
+        id: this.props.match.params.id
       })
     };
 

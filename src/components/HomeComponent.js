@@ -27,7 +27,7 @@ class HomeComponent extends Component {
                 { name: 'options', start: size !== 'small' ? [1, 1] : [0, 1], end: size !== 'small' ? [1, 1] : [0, 1] }
               ]}
             >
-              <Heading gridArea='header' level='1' size='xlarge'>ThetaRadix</Heading>
+              <Heading gridArea='header' level='1' size='xlarge'>Theta Radix</Heading>
               <Box gridArea='options'>
                 <Link to='/tryit'>
                   <Button primary='true' size='medium' label='Try it' color='brand' />

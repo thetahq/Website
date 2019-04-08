@@ -5,7 +5,7 @@ import TryItComponent from './components/TryItComponent';
 import SignInComponent from './components/SignInComponent';
 import RegisterComponent from './components/RegisterComponent';
 import NavbarComponent from './components/NavbarComponent';
-import EmailActivationComponent from './component/EmailActivationComponent';
+import EmailActivationComponent from './components/EmailActivationComponent';
 
 class ThetaRouter extends Component {
   render() {
