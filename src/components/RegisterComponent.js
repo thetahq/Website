@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { Box, Heading, ResponsiveContext, Form, FormField, Button, CheckBox } from 'grommet';
 import { FormCheckmark } from 'grommet-icons';
+import { toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { css } from 'glamor'
 
 class RegisterComponent extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      message: '',
+      created: false,
       checked: false,
       errors: {
         username: '',
@@ -24,7 +27,6 @@ class RegisterComponent extends Component {
 
   resetErrors() {
     this.setState({
-      message: '',
       errors: {
         username: '',
         email: '',
@@ -86,9 +88,7 @@ class RegisterComponent extends Component {
     };
     fetch('http://localhost:8000/register', init).then((resp) => {
       if (!resp.ok) {
-        this.setState({
-          message: 'Error. Try again later.'
-        });
+        this.notify('Error. Try again later.');
       } else {
         resp.json().then((data) => {
           if (data.status === "error") {
@@ -110,14 +110,10 @@ class RegisterComponent extends Component {
                 }));
                 break;
               case 'IllegalCharacters':
-                this.setState({
-                  message: 'Inputs cointain illegal characters'
-                });
+                this.notify('Inputs cointain illegal characters');
                 break;
               case 'BadLength':
-                this.setState({
-                  message: 'Some values are not long enough'
-                });
+                this.notify('Some values are not long enough');
                 break;
               case 'Terms':
                 this.setState(prevState => ({
@@ -128,47 +124,51 @@ class RegisterComponent extends Component {
                 }));
                 break;
               default:
-                this.setState({
-                  message: 'Error. Try again later.'
-                });
+                this.notify('Error. Try again later.');
             }
-          } else if (data.status === "ok") {
-            this.setState({
-              message: 'Account created. Now go verify your email!'
-            })
+          } else if (data.status === "ok" && data.message === "VerifyEmail") {
+            // this.setState({
+            //   created: true
+            // })
           } else {
-            this.setState({
-              message: 'Error. Try again later.'
-            });
+            this.notify('Error. Try again later.');
           }
         });
       }
     }).catch((err) => {
-      this.setState({
-        message: err.message
-      });
-      console.error(err);
+      this.notify(err.message);
+      console.error(err.message);
     });
-
-    // @todo handle all errors and redirect to dashboard if everything is ok
   }
 
-  render() {
-    const AlertPanel = this.state.message !== ''
-      ? (
-        <Box
-          align='center'
-          background='accent-1'
-          pad='small'
-          round='small'
-        >
-          <p>{this.state.message}</p>
-        </Box>
-      ) : (
-        <div></div>
-      );
+  notify(text) {
+    toast.configure({
+      autoClose: 3000,
+      draggable: true,
+      hideProgressBar: true,
+      transition: Slide,
+      background: "#ff00ff"
+    });
 
+    toast(text, {
+      position: toast.POSITION.BOTTOM_LEFT,
+      className: css({
+        background: 'black',
+        border: '2px solid #BF0000',
+        borderRadius: '10px',
+        marginBottom: '0.5rem',
+      }),
+      bodyClassName: css({
+        fontSize: '15px',
+        color: 'white',
+        marginLeft: '0.5rem',
+      }),
+    });
+  };
+
+  render() {
     return (
+      
       <ResponsiveContext.Consumer>
         {() => (
           <Box
@@ -181,7 +181,6 @@ class RegisterComponent extends Component {
             }}
             background='black'
           >
-            { AlertPanel }
             <Heading level='1' size='medium'>Register</Heading>
             <Box
               align='center'
@@ -190,25 +189,29 @@ class RegisterComponent extends Component {
               pad='medium'
               round='small'
             >
-              <Form onSubmit={this.register}>
-                <FormField error={this.state.errors.username} required={true} name='username' label='Username' />
-                <FormField error={this.state.errors.email} required={true} type='email' name='email' label='E-Mail' />
-                <FormField error={this.state.errors.password} required={true} type='password' name='password' label='Password' />
-                <FormField error={this.state.errors.confirmpassword} required={true} type='password' name='confirmpassword' label='Confirm Password' />
-                <CheckBox
-                  error={this.state.errors.terms}
-                  name='terms'
-                  required={true}
-                  label='Do you agree with terms of use?'
-                  checked={this.state.checked}
-                  onChange={
-                    event => this.setState({
-                      checked: event.target.checked
-                    })
-                  }
-                />
-                <Button margin={{ top: '1rem' }} icon={<FormCheckmark />} type='submit' primary label='Register' />
-              </Form>
+            { !this.state.created ? (
+                <Form onSubmit={this.register}>
+                  <FormField error={this.state.errors.username} required={true} name='username' label='Username' />
+                  <FormField error={this.state.errors.email} required={true} type='email' name='email' label='E-Mail' />
+                  <FormField error={this.state.errors.password} required={true} type='password' name='password' label='Password' />
+                  <FormField error={this.state.errors.confirmpassword} required={true} type='password' name='confirmpassword' label='Confirm Password' />
+                  <CheckBox
+                    error={this.state.errors.terms}
+                    name='terms'
+                    required={true}
+                    label='Do you agree with terms of use?'
+                    checked={this.state.checked}
+                    onChange={
+                      event => this.setState({
+                        checked: event.target.checked
+                      })
+                    }
+                  />
+                  <Button margin={{ top: '1rem' }} icon={<FormCheckmark />} type='submit' primary label='Register' />
+                </Form>
+            ) : (
+              <Heading level="3" size="medium">Account Created. Now go verify your email!</Heading>
+            )}
             </Box>
           </Box>
         )}
