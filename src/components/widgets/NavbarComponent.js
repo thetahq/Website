@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Heading, Box, Button } from 'grommet';
+import { Heading, Box, Button, Text } from 'grommet';
 import { Sign, FormEdit } from 'grommet-icons';
 import { Link } from 'react-router-dom';
 
 class NavbarComponent extends Component {
   render() {
+
     return (
       <Box
         tag='nav'
@@ -21,12 +22,13 @@ class NavbarComponent extends Component {
         <Box
           direction='row'
         >
-          <Link to='/signin'>
+          {/* <Link to='/signin'>
             <Button margin={{ right: '0.5rem' }} color='brand' icon={<Sign />} label='Sign In' onClick={() => { }} />
           </Link>
           <Link to='/register'>
             <Button color='brand' icon={<FormEdit />} label='Register' onClick={() => { }} />
-          </Link>
+          </Link> */}
+          <Text>User</Text>
         </Box>
       </Box>
     );

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
-import HomeComponent from './components/HomeComponent';
-import TryItComponent from './components/TryItComponent';
-import SignInComponent from './components/SignInComponent';
-import RegisterComponent from './components/RegisterComponent';
-import NavbarComponent from './components/NavbarComponent';
-import EmailActivationComponent from './components/EmailActivationComponent';
+import HomeComponent from './components/notauthed/HomeComponent';
+import TryItComponent from './components/notauthed/TryItComponent';
+import SignInComponent from './components/notauthed/SignInComponent';
+import RegisterComponent from './components/notauthed/RegisterComponent';
+import NavbarComponent from './components/widgets/NavbarComponent';
+import EmailActivationComponent from './components/notauthed/EmailActivationComponent';
 
 class ThetaRouter extends Component {
   render() {
