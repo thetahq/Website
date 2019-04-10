@@ -139,6 +139,8 @@ class RegisterComponent extends Component {
       this.notify(err.message);
       console.error(err.message);
     });
+
+    e.value.confirmpassword = '';
   }
 
   notify(text) {
