@@ -127,9 +127,9 @@ class RegisterComponent extends Component {
                 this.notify('Error. Try again later.');
             }
           } else if (data.status === "ok" && data.message === "VerifyEmail") {
-            // this.setState({
-            //   created: true
-            // })
+            this.setState({
+              created: true
+            })
           } else {
             this.notify('Error. Try again later.');
           }

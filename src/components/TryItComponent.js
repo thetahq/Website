@@ -5,13 +5,13 @@ class TryItComponent extends Component {
 
   sendRequest(test) {
     let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    // headers.append('Content-Type', 'application/json');
     const init = {
       method: 'POST',
       headers: headers,
-      body: JSON.stringify({message: test.value.sayhello})
+      // body: JSON.stringify({message: test.value.sayhello})
     };
-    fetch('http://localhost:8000/test', init).then((resp) => {
+    fetch('http://localhost:8000/verifysession', init).then((resp) => {
       console.log(resp);
     }).catch((err) => {
       console.error(err);
