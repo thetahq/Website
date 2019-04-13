@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 import { fetchUserData } from '../../actions/UserAction';
 
 class NavbarComponent extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount() {
     this.props.fetchUserData();

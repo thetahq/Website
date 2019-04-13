@@ -6,6 +6,7 @@ import SignInComponent from './components/notauthed/SignInComponent';
 import RegisterComponent from './components/notauthed/RegisterComponent';
 import NavbarComponent from './components/widgets/NavbarComponent';
 import EmailActivationComponent from './components/notauthed/EmailActivationComponent';
+import ContCreateComponent from './components/authorized/ContCreateComponent';
 
 class ThetaRouter extends Component {
   render() {
@@ -19,6 +20,8 @@ class ThetaRouter extends Component {
           <Route path='/signin' component={SignInComponent} />
           <Route path='/register' component={RegisterComponent} />
           <Route path='/activate/:email/:id' component={EmailActivationComponent}/>
+          {/* @todo protected route */} <Route path='/createcontainer' component={ContCreateComponent} />
+          {/* @todo 404 */}
         </div>
       </Router>
     );

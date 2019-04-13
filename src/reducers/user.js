@@ -3,7 +3,8 @@ import { LOAD_USER_DATA, IS_AUTHORIZED } from "../constants/action-types";
 const userDataState = {
     username: '',
     email: '',
-    containers: []
+    containersLimit: 1,
+    containers: [],
 };
 
 export const isAuthorized = (state = false, action) => {
