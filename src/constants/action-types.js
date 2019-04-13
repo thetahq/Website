@@ -1,1 +1,2 @@
-export const LOAD_USER_DATA = 'LOAD_USER_DATA'
+export const LOAD_USER_DATA = 'LOAD_USER_DATA';
+export const IS_AUTHORIZED = 'IS_AUTHORIZED';

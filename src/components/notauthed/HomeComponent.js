@@ -30,7 +30,7 @@ class HomeComponent extends Component {
               <Heading gridArea='header' level='1' size='xlarge'>Theta Radix</Heading>
               <Box gridArea='options'>
                 <Link to='/tryit'>
-                  <Button primary='true' size='medium' label='Try it' color='brand' />
+                  <Button primary={true} size='medium' label='Try it' color='brand' />
                 </Link>
               </Box>
             </Grid>

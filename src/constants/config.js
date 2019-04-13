@@ -1,0 +1,1 @@
+export const USER_DATA_URL = 'http://localhost:8000/getuserdata';

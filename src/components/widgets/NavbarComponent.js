@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import { Heading, Box, Button, Text } from 'grommet';
 import { Sign, FormEdit } from 'grommet-icons';
+import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
+import { fetchUserData } from '../../actions/UserAction';
 
 class NavbarComponent extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.fetchUserData();
+  }
+
   render() {
 
     return (
@@ -22,17 +32,31 @@ class NavbarComponent extends Component {
         <Box
           direction='row'
         >
-          {/* <Link to='/signin'>
-            <Button margin={{ right: '0.5rem' }} color='brand' icon={<Sign />} label='Sign In' onClick={() => { }} />
-          </Link>
-          <Link to='/register'>
-            <Button color='brand' icon={<FormEdit />} label='Register' onClick={() => { }} />
-          </Link> */}
-          <Text>User</Text>
+          {!this.props.authorized ? (
+            <div>
+              <Link to='/signin'>
+                <Button margin={{ right: '0.5rem' }} color='brand' icon={<Sign />} label='Sign In' onClick={() => { }} />
+              </Link>
+              <Link to='/register'>
+                <Button color='brand' icon={<FormEdit />} label='Register' onClick={() => { }} />
+              </Link>
+            </div>
+          ) : <Text>Noituri</Text>
+          // ) : <Text>{this.props.userData.username}</Text>
+          }
         </Box>
       </Box>
     );
   }
 }
 
-export default NavbarComponent;
+const mapStateToProps = state => ({
+  authorized: state.isAuthorized,
+  userData: state.userData
+})
+
+const mapDispatchToProps = dispatch => ({
+  fetchUserData: () => dispatch(fetchUserData())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarComponent)
