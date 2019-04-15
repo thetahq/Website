@@ -8,6 +8,17 @@
     "email": "yknomeh@protonmail.com"
   },
   "dependencies": {
+    "@atlaskit/avatar": "^15.0.3",
+    "@atlaskit/button": "^12.0.0",
+    "@atlaskit/css-reset": "^3.0.7",
+    "@atlaskit/drawer": "^3.0.6",
+    "@atlaskit/dropdown-menu": "^7.0.5",
+    "@atlaskit/icon": "^16.0.8",
+    "@atlaskit/modal-dialog": "^8.0.6",
+    "@atlaskit/navigation": "^34.0.3",
+    "@atlaskit/navigation-next": "^5.1.4",
+    "@atlaskit/page": "^9.0.3",
+    "@atlaskit/theme": "^8.1.6",
     "glamor": "^2.20.40",
     "grommet": "^2.6.5",
     "grommet-icons": "^4.2.0",

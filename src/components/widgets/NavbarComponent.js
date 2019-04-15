@@ -23,7 +23,7 @@ class NavbarComponent extends Component {
         align='center'
         justify='between'
         pad={{ left: 'medium', right: 'small', vertical: 'small' }}
-        background='black'
+        background='#c70039'
       >
 
         <Link to='/' style={{ textDecoration: 'none', color: 'white' }}>
