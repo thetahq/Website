@@ -32,10 +32,30 @@ class SystemSelectorComponent extends Component {
             pad='medium'
             gap='medium'
           >
-            <Ubuntu color={this.state.selected === 'ubuntu' ? '#FF8F00' : '#FFF'} onClick={() => this.setSelected('ubuntu')} size='xmedium' />
-            <Archlinux color={this.state.selected === 'arch' ? '#1AE3E0' : '#FFF'} onClick={() => this.setSelected('arch')} size='xmedium' />
-            <Centos color={this.state.selected === 'centos' ? '#881AE3' : '#FFF'} onClick={() => this.setSelected('centos')} size='xmedium' />
-            <Fedora color={this.state.selected === 'fedora' ? '#000EE3' : '#FFF'} onClick={() => this.setSelected('fedora')} size='xmedium' />
+            <Ubuntu
+              style={{cursor: "pointer"}}
+              color={this.state.selected === 'ubuntu' ? '#FF8F00' : '#FFF'}
+              onClick={() => this.setSelected('ubuntu')}
+              size='xmedium'
+            />
+            <Archlinux
+              style={{cursor: "pointer"}}
+              color={this.state.selected === 'arch' ? '#1AE3E0' : '#FFF'}
+              onClick={() => this.setSelected('arch')}
+              size='xmedium'
+            />
+            <Centos
+              style={{cursor: "pointer"}}
+              color={this.state.selected === 'centos' ? '#881AE3' : '#FFF'}
+              onClick={() => this.setSelected('centos')}
+              size='xmedium'
+            />
+            <Fedora
+              style={{cursor: "pointer"}}
+              color={this.state.selected === 'fedora' ? '#000EE3' : '#FFF'}
+              onClick={() => this.setSelected('fedora')}
+              size='xmedium'
+            />
           </Box>
         )}
       </ResponsiveContext.Consumer>

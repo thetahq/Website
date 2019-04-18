@@ -7,6 +7,7 @@ import RegisterComponent from './components/notauthed/RegisterComponent';
 import NavbarComponent from './components/widgets/NavbarComponent';
 import EmailActivationComponent from './components/notauthed/EmailActivationComponent';
 import ContCreateComponent from './components/authorized/ContCreateComponent';
+import Dashboard from './components/authorized/DashboardComponent';
 
 class ThetaRouter extends Component {
   render() {
@@ -21,6 +22,7 @@ class ThetaRouter extends Component {
           <Route path='/register' component={RegisterComponent} />
           <Route path='/activate/:email/:id' component={EmailActivationComponent}/>
           {/* @todo protected route */} <Route path='/createcontainer' component={ContCreateComponent} />
+          {/* protected route */} <Route path='/dashboard' component={Dashboard} />
           {/* @todo 404 */}
         </div>
       </Router>

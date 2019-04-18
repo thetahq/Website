@@ -15,7 +15,7 @@ class NavbarComponent extends Component {
   }
 
   render() {
-
+    
     return (
       <Box
         tag='nav'
@@ -23,7 +23,7 @@ class NavbarComponent extends Component {
         align='center'
         justify='between'
         pad={{ left: 'medium', right: 'small', vertical: 'small' }}
-        background='#c70039'
+        background='black'
       >
 
         <Link to='/' style={{ textDecoration: 'none', color: 'white' }}>

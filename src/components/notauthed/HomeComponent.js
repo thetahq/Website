@@ -15,7 +15,7 @@ class HomeComponent extends Component {
             justify='between'
             fill='horizontal'
             pad='medium'
-            background='#c70039'
+            background='black'
           >
             <Grid
               rows={[size !== 'small' ? 'small' : '8rem', '2.5rem']}
