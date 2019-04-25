@@ -6,18 +6,10 @@ class DashboardPanelComponent extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      selected: 'main'
-    }
-
     this.setSelected = this.setSelected.bind(this);
   }
 
   setSelected(selected) {
-    this.setState({
-      selected: selected
-    });
-
     this.props.Selected(selected);
   }
 
@@ -32,13 +24,13 @@ class DashboardPanelComponent extends Component {
             pad='medium'
             gap='medium'
           >
-            <FormPreviousLink color={this.state.selected === '' ? 'brand' : 'white'} style={{cursor: "pointer"}} onClick={() => this.setSelected('')} />
-            <ServerCluster color={this.state.selected === 'main' ? 'brand' : 'white'} style={{cursor: "pointer"}} onClick={() => this.setSelected('main')} />
-            <Resources color={this.state.selected === 'resources' ? 'brand' : 'white'} style={{cursor: "pointer"}} onClick={() => this.setSelected('resources')} />
-            <Terminal color={this.state.selected === 'terminal' ? 'brand' : 'white'} style={{cursor: "pointer"}} onClick={() => this.setSelected('terminal')} />
-            <FormSchedule color={this.state.selected === 'tasks' ? 'brand' : 'white'} style={{cursor: "pointer"}} onClick={() => this.setSelected('tasks')} />
-            <Currency color={this.state.selected === 'shop' ? 'brand' : 'white'} style={{cursor: "pointer"}} onClick={() => this.setSelected('shop')} />
-            <Configure color={this.state.selected === 'settings' ? 'brand' : 'white'} style={{cursor: "pointer"}} onClick={() => this.setSelected('settings')} />
+            <FormPreviousLink color={this.props.current === '' ? 'brand' : 'white'} style={{cursor: "pointer"}} onClick={() => this.setSelected('')} />
+            <ServerCluster color={this.props.current === 'main' ? 'brand' : 'white'} style={{cursor: "pointer"}} onClick={() => this.setSelected('main')} />
+            <Resources color={this.props.current === 'resources' ? 'brand' : 'white'} style={{cursor: "pointer"}} onClick={() => this.setSelected('resources')} />
+            <Terminal color={this.props.current === 'terminal' ? 'brand' : 'white'} style={{cursor: "pointer"}} onClick={() => this.setSelected('terminal')} />
+            <FormSchedule color={this.props.current === 'tasks' ? 'brand' : 'white'} style={{cursor: "pointer"}} onClick={() => this.setSelected('tasks')} />
+            <Currency color={this.props.current === 'shop' ? 'brand' : 'white'} style={{cursor: "pointer"}} onClick={() => this.setSelected('shop')} />
+            <Configure color={this.props.current === 'settings' ? 'brand' : 'white'} style={{cursor: "pointer"}} onClick={() => this.setSelected('settings')} />
           </Box>
         )}
       </ResponsiveContext.Consumer>
