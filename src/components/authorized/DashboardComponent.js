@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Box, Heading, ResponsiveContext, Grid, Button, Text } from 'grommet';
-import { Ubuntu, Archlinux, Centos, Fedora, PowerShutdown, PowerReset, Clock } from 'grommet-icons';
+import { Box, Heading, ResponsiveContext, Grid, Button, Text, Form, FormField } from 'grommet';
+import { Ubuntu, Archlinux, Centos, Fedora, PowerShutdown, PowerReset, Clock, Currency, Basket } from 'grommet-icons';
 import ContainerSelector from '../widgets/SelectContainerComponent';
 import Panel from '../widgets/DashboardPanelComponent';
 import { Line } from 'react-chartjs';
@@ -41,12 +41,12 @@ class DashboardComponent extends Component {
               },
               {
                 label: "RAM usage",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
+                fillColor: "rgba(1,0,200,0.2)",
+                strokeColor: "rgba(1,0,200,1)",
+                pointColor: "rgba(1,0,200,1)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
+                pointHighlightStroke: "rgba(1,0,200,1)",
                 data: [28, 48, 40, 19, 86, 27, 90]
               }
             ]
@@ -114,27 +114,27 @@ class DashboardComponent extends Component {
           background='black'
           gap='medium'
         >
-          <PowerReset style={{cursor: "pointer"}} size='3rem'/>
-          <PowerShutdown style={{cursor: "pointer"}} size='3rem'/>
+          <PowerReset style={{ cursor: "pointer" }} size='3rem' />
+          <PowerShutdown style={{ cursor: "pointer" }} size='3rem' />
         </Box>
-        { this.state.selectedContainer.expire === 'expired' && (
-        <Button
-          style={{color: 'white'}}
-          gridArea='getMoreTime'
-          margin={{ top: '2rem' }}
-          icon={<Clock/>}
-          color='brand'
-          primary={false}
-          label='Get More Hosting Time'
-          onClick={() => this.setState({selected: 'shop'})}
-        />
+        {this.state.selectedContainer.expire === 'expired' && (
+          <Button
+            style={{ color: 'white' }}
+            gridArea='getMoreTime'
+            margin={{ top: '2rem' }}
+            icon={<Clock />}
+            color='brand'
+            primary={false}
+            label='Get More Hosting Time'
+            onClick={() => this.setState({ selected: 'shop' })}
+          />
         )}
       </Grid>
     );
 
     const resourcesMenu = (
       <Grid
-        rows={['6rem', '10']}
+        rows={['6rem', '17rem', '2rem', '2rem']}
         columns={['medium', 'medium', 'medium']}
         justify='center'
         gap='none'
@@ -143,11 +143,86 @@ class DashboardComponent extends Component {
         areas={[
           { name: 'name', start: [1, 0], end: [1, 0] },
           { name: 'cpuUsage', start: [0, 1], end: [2, 1] },
+          { name: 'l1', start: [1, 2], end: [1, 2] },
+          { name: 'l2', start: [1, 3], end: [1, 3] },
         ]}
       >
         <Heading gridArea='name' color='white'>Resources</Heading>
         <Box gridArea='cpuUsage'>
-          <Line data={this.state.selectedContainer.resources} width="600" height="250"/>
+          <Line data={this.state.selectedContainer.resources} width="600" height="250" />
+        </Box>
+        <Text gridArea="l1" color="rgba(1,0,200,1)">CPU</Text>
+        <Text gridArea="l2" color="rgba(225,0,225,1)">RAM</Text>
+      </Grid>
+    );
+
+    const shopMenu = (
+      <Grid
+        rows={['6rem', '2rem', '2rem', '5rem', '15rem']}
+        columns={['medium', 'medium', 'medium']}
+        justify='center'
+        gap='none'
+        fill={true}
+        background='black'
+        areas={[
+          { name: 'name', start: [1, 0], end: [1, 0] },
+          { name: 'credits', start: [0, 1], end: [2, 1] },
+          { name: 'price', start: [0, 2], end: [2, 2] },
+          { name: 'addtime', start: [0, 3], end: [2, 3] },
+          { name: 'configcont', start: [1, 4], end: [1, 4] },
+        ]}
+      >
+        <Heading gridArea='name' color='white'>Shop</Heading>
+        <Box gridArea='credits' direction='row'>
+          <Text color='white'>Credits: (user.credits)&nbsp;</Text>
+          <Currency color="white" />
+        </Box>
+        <Text gridArea='price' color='white'>Price: (user.pays)/h</Text>
+
+        <Button
+          gridArea='addtime'
+          margin={{ top: '2rem' }}
+          icon={
+            <Basket 
+              color='white'
+            />
+          }
+          color='brand'
+          label='Watch Ad and get 10 credits'
+          style={{ color: 'white' }}
+        />
+
+        <Box gridArea='configcont' background='black' margin={{ top: '2rem' }}>
+          <Form>
+            <Text margin={{ left: '5em', top: '2rem' }}>CPU cores</Text>
+
+            <FormField
+              type='number'
+              style={{ textAlign: 'center' }}
+              align='center'
+              required={true}
+              name='cpucores'
+              value='1'
+            />
+
+            <Text margin={{ left: '7rem', top: '2rem' }}>RAM</Text>
+
+            <FormField
+              type='number'
+              style={{ textAlign: 'center' }}
+              align='center'
+              required={true}
+              name='ram'
+              value='512'
+            />
+
+            <Button
+              margin={{ left: '5rem', top: '2.5rem' }}
+              type='submit'
+              color='brand'
+              label='Create'
+            />
+          </Form>
         </Box>
       </Grid>
     );
@@ -158,7 +233,7 @@ class DashboardComponent extends Component {
         {this.state.selected === 'resources' ? resourcesMenu : <div></div>}
         {this.state.selected === 'terminal' ? <Heading>terminal</Heading> : <div></div>}
         {this.state.selected === 'tasks' ? <Heading>tasks</Heading> : <div></div>}
-        {this.state.selected === 'shop' ? <Heading>shop</Heading> : <div></div>}
+        {this.state.selected === 'shop' ? shopMenu : <div></div>}
         {this.state.selected === 'settings' ? <Heading>settings</Heading> : <div></div>}
       </div>
     );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box, ResponsiveContext, Text } from 'grommet';
+import { Box, ResponsiveContext } from 'grommet';
 import { ServerCluster, Resources, FormSchedule, Currency, Configure, Terminal, FormPreviousLink } from 'grommet-icons';
 
 class DashboardPanelComponent extends Component {
