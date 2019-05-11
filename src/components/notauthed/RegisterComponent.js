@@ -4,6 +4,9 @@ import { FormCheckmark } from 'grommet-icons';
 import { toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { css } from 'glamor'
+import { isAuthorized } from '../../actions/UserAction';
+import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom';
 
 class RegisterComponent extends Component {
   constructor(props) {
@@ -183,6 +186,9 @@ class RegisterComponent extends Component {
             }}
             background='black'
           >
+
+            { this.props.authorized && <Redirect to='/'/> }
+
             <Heading level='1' size='medium'>Register</Heading>
             <Box
               align='center'
@@ -222,4 +228,12 @@ class RegisterComponent extends Component {
   }
 }
 
-export default RegisterComponent;
+const mapStateToProps = state => ({
+  authorized: state.isAuthorized
+})
+
+const mapDispatchToProps = dispatch => ({
+  isAuthorized: (data) => dispatch(isAuthorized(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterComponent)

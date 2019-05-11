@@ -3,15 +3,20 @@ import { Heading, Box, Button, Text } from 'grommet';
 import { Sign, FormEdit } from 'grommet-icons';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-import { fetchUserData } from '../../actions/UserAction';
+import { fetchUserData, isAuthorized } from '../../actions/UserAction';
+import { checkIfAuthed } from '../../utils/auth';
 
 class NavbarComponent extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   componentDidMount() {
-    this.props.fetchUserData();
+    console.log(this.props.authorized)
+
+    if (this.props.authorized) {
+      this.props.fetchUserData();
+    }
+
+    this.props.isAuthorized(checkIfAuthed())
+    console.log(this.props.authorized + "OOF")
+    console.log(checkIfAuthed() + "xx")
   }
 
   render() {
@@ -56,7 +61,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchUserData: () => dispatch(fetchUserData())
+  fetchUserData: () => dispatch(fetchUserData()),
+  isAuthorized: (data) => dispatch(isAuthorized(data))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavbarComponent)

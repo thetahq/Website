@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { connect } from "react-redux";
 
-export const isAuthorized = () => {
+export const checkIfAuthed = () => {
     const init = {
         method: 'POST'
     };
@@ -25,10 +26,16 @@ export const isAuthorized = () => {
     return false;
 };
 
-export const AuthRoute = ({ component: Component, ...options }) => (
+const AuthRoute = ({authorized, component: Component, ...options }) => (
     <Route {...options} render={(props) => (
-        isAuthorized
+        checkIfAuthed()
         ? <Component {...props} />
         : <Redirect to='/signin' />
     )} />
 );
+
+const mapStateToProps = state => ({
+    authorized: state.isAuthorized
+})
+  
+export default connect(mapStateToProps)(AuthRoute)

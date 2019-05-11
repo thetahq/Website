@@ -5,6 +5,9 @@ import { toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { css } from 'glamor'
 import * as Cookies from "js-cookie";
+import { isAuthorized } from '../../actions/UserAction';
+import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom';
 
 class SignInComponent extends Component {
   constructor(props) {
@@ -12,7 +15,6 @@ class SignInComponent extends Component {
 
     this.signIn = this.signIn.bind(this)
   }
-
 
   signIn(e) {
     let headers = new Headers();
@@ -40,7 +42,8 @@ class SignInComponent extends Component {
             }
           } else if (data.status === "ok" && data.message !== "") {
             Cookies.set("token", data.message, { expires: 7, path: '/' });
-            // @todo redirect to dashboard
+            this.props.isAuthorized(true);
+            this.props.history.push('/dashboard');
           } else {
             this.notify('Error. Try again later.');
           }
@@ -93,6 +96,9 @@ class SignInComponent extends Component {
             }}
             background='black'
           >
+
+          { this.props.authorized && <Redirect to='/'/> }
+
             <Heading level='1' size='medium'>Sign in</Heading>
             <Box
               align='center'
@@ -114,4 +120,12 @@ class SignInComponent extends Component {
   }
 }
 
-export default SignInComponent;
+const mapStateToProps = state => ({
+  authorized: state.isAuthorized
+})
+
+const mapDispatchToProps = dispatch => ({
+  isAuthorized: (data) => dispatch(isAuthorized(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignInComponent)
