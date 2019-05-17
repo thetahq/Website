@@ -8,15 +8,12 @@ import { checkIfAuthed } from '../../utils/auth';
 
 class NavbarComponent extends Component {
   componentDidMount() {
-    console.log(this.props.authorized)
 
     if (this.props.authorized) {
       this.props.fetchUserData();
     }
 
     this.props.isAuthorized(checkIfAuthed())
-    console.log(this.props.authorized + "OOF")
-    console.log(checkIfAuthed() + "xx")
   }
 
   render() {
