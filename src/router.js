@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import HomeComponent from './components/notauthed/HomeComponent';
 import TryItComponent from './components/notauthed/TryItComponent';
 import SignInComponent from './components/notauthed/SignInComponent';
@@ -17,16 +17,16 @@ class ThetaRouter extends Component {
     return (
       <Router>
         <NavbarComponent/>
-        <div>
-          <Route exact path='/' component={HomeComponent} />
+        <Switch>
+          <Route path='/' exact component={HomeComponent} />
           <Route path='/tryit' component={TryItComponent} />
           <Route path='/signin' component={SignInComponent} />
           <Route path='/register' component={RegisterComponent} />
-          <Route path='/activate/:email/:id' component={EmailActivationComponent}/>
+          <Route path='/activate/:email/:id' component={EmailActivationComponent} />
           <AuthRoute path='/createcontainer' component={ContCreateComponent} />
           <AuthRoute path='/dashboard' component={Dashboard} />
           <Route component={NoMatchComponent} />
-        </div>
+        </Switch>
       </Router>
     );
   }
