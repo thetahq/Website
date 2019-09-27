@@ -1,3 +1,6 @@
+# Deprecated.
+
+
 This project shows you how bad I am at creating websites
 
 ## Available Scripts
